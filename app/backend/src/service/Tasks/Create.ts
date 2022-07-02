@@ -1,5 +1,5 @@
-import { ITask } from '../interface';
-import { Tasks } from '../model';
+import { ITask } from '../../interface';
+import { Tasks } from '../../model';
 
 export default class Create {
   // eslint-disable-next-line class-methods-use-this

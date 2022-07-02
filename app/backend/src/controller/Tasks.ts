@@ -15,7 +15,6 @@ export default class Tasks {
     return res.status(200).json(this._tasks);
   }
 
-  // eslint-disable-next-line class-methods-use-this
   public async insert(req: Request, res: Response, _next: NextFunction): Promise<Response> {
     const { task } = req.body;
 
