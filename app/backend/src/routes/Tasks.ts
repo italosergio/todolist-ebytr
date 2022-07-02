@@ -10,6 +10,7 @@ export default class TasksRouter {
   }
 
   private config(): void {
-    this.route.get('/', Tasks.get);
+    const tasks = new Tasks();
+    this.route.get('/', tasks.get);
   }
 }

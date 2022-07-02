@@ -2,10 +2,11 @@ import { ITask } from '../interface';
 import { Tasks } from '../model';
 
 export default class Find {
-  static _tasks: ITask[];
+  private _tasks: ITask[];
 
-  static async Tasks() {
-    this._tasks = await Tasks.get();
+  public async Tasks() {
+    const getTasks = new Tasks();
+    this._tasks = await getTasks.get();
     return this._tasks;
   }
 }

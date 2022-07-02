@@ -36,8 +36,9 @@ class App {
 
   private routes(): void {
     const tasks = new TasksRouter();
+    const httpError = new HttpError();
     this.app.use('/tasks', tasks.route);
-    this.app.use(HttpError.throw);
+    this.app.use(httpError.get);
   }
 }
 
