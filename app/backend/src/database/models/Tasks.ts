@@ -1,4 +1,4 @@
-import { Model, INTEGER, STRING } from 'sequelize';
+import { Model, INTEGER, STRING, BOOLEAN, DATE } from 'sequelize';
 import db from '.';
 
 class Tasks extends Model {
@@ -23,6 +23,14 @@ Tasks.init({
   priority: {
     type: INTEGER,
     allowNull: true,
+  },
+  status: {
+    type: BOOLEAN,
+    allowNull: false,
+  },
+  date: {
+    type: DATE,
+    allowNull: false,
   },
 }, {
   underscored: true,

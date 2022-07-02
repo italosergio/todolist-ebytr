@@ -11,14 +11,20 @@ module.exports = {
         {
           description: 'Reuniao Ebytr',
           priority: 1,
+          status: false,
+          date: new Date(),
         },
         {
           description: 'Daily com o time',
           priority: 2,
+          status: false,
+          date: new Date(),
         },
         {
           description: 'Sair com cachorro',
           priority: 3,
+          status: true,
+          date: new Date(),
         },
       ],
       {},
