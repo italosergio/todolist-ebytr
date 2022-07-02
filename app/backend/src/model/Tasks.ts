@@ -21,4 +21,9 @@ export default class Tasks {
       { where: { id } },
     );
   }
+
+  // eslint-disable-next-line class-methods-use-this
+  public async delete(id: number): Promise<void> {
+    await tasksModel.destroy({ where: { id } });
+  }
 }

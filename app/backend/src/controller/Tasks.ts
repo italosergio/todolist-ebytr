@@ -1,5 +1,5 @@
 import { NextFunction, Response, Request } from 'express';
-import { Find, Create, Update } from '../service/Tasks';
+import { Find, Create, Update, Delete } from '../service/Tasks';
 import { ITask } from '../interface';
 
 export default class Tasks {
@@ -32,6 +32,18 @@ export default class Tasks {
 
     const update = new Update();
     await update.Task(id, editedTask);
+
+    const findAll = new Find();
+    this._tasks = await findAll.Tasks();
+
+    return res.status(200).json(this._tasks);
+  }
+
+  public async delete(req: Request, res: Response, _next: NextFunction): Promise<Response> {
+    const { id } = req.body;
+
+    const destroy = new Delete();
+    await destroy.Task(id);
 
     const findAll = new Find();
     this._tasks = await findAll.Tasks();
