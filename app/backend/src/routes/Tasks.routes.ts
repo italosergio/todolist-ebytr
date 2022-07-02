@@ -13,6 +13,6 @@ export default class TasksRouter {
     const tasks = new Tasks();
     this.route.get('/', tasks.get);
     this.route.post('/', tasks.insert);
-    this.route.put('/', tasks.update);
+    this.route.patch('/', tasks.update);
   }
 }
