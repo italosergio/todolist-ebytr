@@ -1,4 +1,4 @@
 import Find from './Find';
+import Create from './Create';
 
-// eslint-disable-next-line import/prefer-default-export
-export { Find };
+export { Find, Create };

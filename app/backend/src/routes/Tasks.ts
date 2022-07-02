@@ -12,5 +12,6 @@ export default class TasksRouter {
   private config(): void {
     const tasks = new Tasks();
     this.route.get('/', tasks.get);
+    this.route.post('/insert', tasks.insert);
   }
 }
