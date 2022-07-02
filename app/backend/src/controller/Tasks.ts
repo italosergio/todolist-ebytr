@@ -12,7 +12,7 @@ export default class Tasks {
 
     if (!this._tasks.length) return res.status(400).json({ message: 'Tasks doesn\'t exist' });
 
-    return res.status(200).json(this._tasks);
+    return res.status(200).json({ tasks: this._tasks });
   }
 
   public async insert(req: Request, res: Response, _next: NextFunction): Promise<Response> {
@@ -24,7 +24,7 @@ export default class Tasks {
     const findAll = new Find();
     this._tasks = await findAll.Tasks();
 
-    return res.status(201).json(this._tasks);
+    return res.status(201).json({ tasks: this._tasks });
   }
 
   public async update(req: Request, res: Response, _next: NextFunction): Promise<Response> {
@@ -36,7 +36,7 @@ export default class Tasks {
     const findAll = new Find();
     this._tasks = await findAll.Tasks();
 
-    return res.status(200).json(this._tasks);
+    return res.status(200).json({ tasks: this._tasks });
   }
 
   public async delete(req: Request, res: Response, _next: NextFunction): Promise<Response> {
@@ -48,6 +48,6 @@ export default class Tasks {
     const findAll = new Find();
     this._tasks = await findAll.Tasks();
 
-    return res.status(200).json(this._tasks);
+    return res.status(200).json({ tasks: this._tasks });
   }
 }
