@@ -36,6 +36,6 @@ export default class Tasks {
     const findAll = new Find();
     this._tasks = await findAll.Tasks();
 
-    return res.status(204).json(this._tasks);
+    return res.status(201).json(this._tasks);
   }
 }
