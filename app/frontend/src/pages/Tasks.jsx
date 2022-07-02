@@ -1,8 +1,11 @@
-import { Header } from "../components";
+import { Header, Table } from "../components";
 
 const Tasks = () => {
   return (
-    <Header />
+    <>
+      <Header />
+      <Table />
+    </>
   )
 }
 
