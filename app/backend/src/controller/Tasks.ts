@@ -1,5 +1,5 @@
 import { NextFunction, Response, Request } from 'express';
-import { Find, Create } from '../service';
+import { Find, Create, Update } from '../service/Tasks';
 import { ITask } from '../interface';
 
 export default class Tasks {
@@ -25,5 +25,17 @@ export default class Tasks {
     this._tasks = await findAll.Tasks();
 
     return res.status(201).json(this._tasks);
+  }
+
+  public async update(req: Request, res: Response, _next: NextFunction): Promise<Response> {
+    const { id, editedTask } = req.body;
+
+    const update = new Update();
+    await update.Task(id, editedTask);
+
+    const findAll = new Find();
+    this._tasks = await findAll.Tasks();
+
+    return res.status(204).json(this._tasks);
   }
 }

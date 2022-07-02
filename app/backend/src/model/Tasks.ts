@@ -11,7 +11,14 @@ export default class Tasks {
 
   // eslint-disable-next-line class-methods-use-this
   public async create(values: ITask): Promise<void> {
-    console.log(values);
     await tasksModel.create(values);
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  public async update(id: number, editedTask: object): Promise<void> {
+    await tasksModel.update(
+      { ...editedTask },
+      { where: { id } },
+    );
   }
 }

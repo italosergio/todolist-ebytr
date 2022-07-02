@@ -1,6 +1,6 @@
 import * as express from 'express';
 import { HttpError } from './middleware';
-import { TasksRouter } from './routes';
+import { TasksRouter } from './routes/index.routes';
 
 import 'express-async-errors';
 
