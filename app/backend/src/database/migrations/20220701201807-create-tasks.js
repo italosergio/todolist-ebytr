@@ -7,8 +7,14 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      description: { type: Sequelize.STRING },
-      priority: { type: Sequelize.INTEGER },
+      description: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      priority: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+      },
     });
   },
 
