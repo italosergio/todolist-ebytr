@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Header, Table } from "../components";
 import TaskInput from '../components/TaskInput';
-import { requestTasks } from "../services/requests";
+import { requestTasks, insertTask } from "../services/requests";
 
 const Tasks = () => {
   const [tasks, setTasks] = useState([]);
@@ -14,23 +14,57 @@ const Tasks = () => {
     .then((response) => setTasks(response))
     .catch((error) => console.log(error));
 
+  const postTask = async (endpoint, body) => {
+    setAlmostAddTask(true);
+
+    await insertTask(endpoint, body)
+    .then((response) => setTasks(response))
+    .catch((error) => console.log(error.message));
+    
+    setAlmostAddTask(false);
+  }
+
   useEffect(() => {
     const endpoint = '/tasks';
-    setTimeout(() => {
+
+    let timer = setTimeout(() => {
       getTasks(endpoint);
     }, 1000); // timer usado apenas melhorar visualizacao do efeito Loading;
+
+    return () => { clearTimeout(timer) }
   }, []);
+
+  useEffect(() => {
+    const endpoint = '/tasks';
+    const date = new Date();
+
+    const task = {
+      description: descriptionInput,
+      priority: priorityInput,
+      date: date.toISOString(),
+      status: false
+    }
+    postTask(endpoint, { task });
+  }, [addTaskCount]);
 
   return (
     <>
       <Header />
       <TaskInput
-        descriptionInput={descriptionInput}
+        descriptionInput={ descriptionInput }
         setDescriptionInput={setDescriptionInput}
         priorityInput={ priorityInput }
         setPriorityInput={setPriorityInput}
       />
-      <Table tasks={tasks} />
+      <button
+        type="button"
+        class="btn btn-outline-dark btn-sm"
+        onClick={() => setAddTaskCount(addTaskCount + 1)}
+      > Adicionar tarefa
+      </button>
+      <br />
+      <br />
+      <Table tasks={ tasks } almostAddTask={ almostAddTask } />
     </>
   )
 }

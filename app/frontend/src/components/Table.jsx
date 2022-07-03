@@ -1,6 +1,6 @@
 import LoadingTable from "./LoadingTable";
 
-const Table = ({ tasks }) => {
+const Table = ({ tasks, almostAddTask }) => {
   return (
     <>
       <table className="table table-dark table-striped">
@@ -32,7 +32,8 @@ const Table = ({ tasks }) => {
         </tbody>
       </table>
 
-      { !tasks.length ? <LoadingTable /> : null }
+      { !tasks.length ? <LoadingTable quantity={10} /> : null }
+      { almostAddTask ? <LoadingTable quantity={1} /> : null }
       
     </>
   )

@@ -5,7 +5,12 @@ const api = axios.create({
 });
 
 export const requestTasks = async (endpoint) => {
-  const { data: {tasks} } = await api.get(endpoint);
+  const { data: { tasks } } = await api.get(endpoint);
+  return tasks;
+};
+
+export const insertTask = async (endpoint, body) => {
+  const { data: { tasks } } = await api.post(endpoint, body);
   return tasks;
 };
 
