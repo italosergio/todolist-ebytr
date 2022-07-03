@@ -73,13 +73,18 @@ const Table = ({ tasks, setTasks, almostAddTask }) => {
             tasks.map((e) => {
               const date = new Date(e.date);
               const datePhrase = `${date.getDate()}/${date.getMonth() + 1} as ${date.getHours()}:${date.getMinutes()} `
-              const status = e.status ? 'ok' : '--'
               return (
                 <tr>
-                  <td>{status}</td>
+                  <td>
+                    {e.status ? <i class="check circle outline icon"></i> : <i class="circle outline icon"></i>}
+                  </td>
                   <td>{e.description}</td>
                   <td>{datePhrase}</td>
-                  <td>{e.priority}</td>
+                  <td>
+                    {e.priority === 1 ? <div class="ui green button"></div> : null}
+                    {e.priority === 2 ? <button class="ui yellow button"></button> : null}
+                    {e.priority === 3 ? <button class="ui red button"></button> : null}
+                  </td>
                 </tr>
               )
             })

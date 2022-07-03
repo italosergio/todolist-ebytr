@@ -6,35 +6,31 @@ const TaskAddInput = ({
 }) => {
   return (
     <>
-     <label htmlFor="description">
-      <input
-        disabled={false}
+      <div class="ui large input focus">
+        <input 
         id="description"
-        type="text"
+        type="text" 
         placeholder="Descricao da tarefa"
         data-testid="description"
-        value={ descriptionInput }
+        value={descriptionInput}
         onChange={({ target: { value } }) => setDescriptionInput(value)}
-      />
-      Inserir tarefa
-    </label>
-    <br/>
-    <label htmlFor="priority">
-      <input
-        disabled={false}
+        />
+      </div>
+      <br />
+      <select
+        class="ui compact selection dropdown"
         id="priority"
-        type="number"
-        // min="1"
-        // max="3"
-        placeholder="Prioridade"
         data-testid="priority"
-        value={ priorityInput }
+        value={priorityInput}
         onChange={({ target: { value } }) => setPriorityInput(value)}
-      />
-      Prioridade
-    </label>
-    <br/>
-    <br/>
+      >
+        <option selected value="0">Sem prioridade</option>
+        <option value="1">Baixa</option>
+        <option value="2">Media</option>
+        <option value="3">Alta</option>
+      </select>
+      <br />
+      <br />
     </>
   );
 }

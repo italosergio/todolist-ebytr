@@ -19,9 +19,9 @@ const Tasks = () => {
     setAlmostAddTask(true);
 
     await insertTask(endpoint, body)
-    .then((response) => setTasks(response))
-    .catch((error) => console.log(error.message));
-    
+      .then((response) => setTasks(response))
+      .catch((error) => console.log(error.message));
+
     setAlmostAddTask(false);
   }
 
@@ -53,21 +53,22 @@ const Tasks = () => {
   return (
     <>
       <Header />
+      <br />
       <TaskInput
-        descriptionInput={ descriptionInput }
+        descriptionInput={descriptionInput}
         setDescriptionInput={setDescriptionInput}
-        priorityInput={ priorityInput }
+        priorityInput={priorityInput}
         setPriorityInput={setPriorityInput}
       />
-      <button
-        type="button"
-        class="btn btn-outline-dark btn-sm"
-        onClick={() => setAddTaskCount(addTaskCount + 1)}
-      > Adicionar tarefa
-      </button>
+      <div class="ui animated button" tabindex="0" onClick={() => setAddTaskCount(addTaskCount + 1)}>
+        <div class="visible content">Adicionar</div>
+        <div class="hidden content">
+          <i class="plus icon"></i>
+        </div>
+      </div>
       <br />
       <br />
-      <Table tasks={ tasks } setTasks={ setTasks } almostAddTask={ almostAddTask } />
+      <Table tasks={tasks} setTasks={setTasks} almostAddTask={almostAddTask} />
     </>
   )
 }
