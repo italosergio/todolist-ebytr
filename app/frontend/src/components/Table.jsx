@@ -3,7 +3,7 @@ import LoadingTable from "./LoadingTable";
 
 const Table = ({ tasks, setTasks, almostAddTask }) => {
   const [sortType, setSortType] = useState('date-down')
-  
+
   const handleClick = (value) => {
     if (sortType.includes('down')) setSortType(`${value}-up`);
     if (sortType.includes('up')) setSortType(`${value}-down`);
@@ -26,19 +26,11 @@ const Table = ({ tasks, setTasks, almostAddTask }) => {
         orderTasks.sort((a, b) => a.status - b.status)
         break;
       case 'description-up':
-        orderTasks.sort((a, b) => {
-          if(b.description > a.description) return -1
-          if(a.description > b.description) return 1
-          return 0
-        })
+        orderTasks.sort((a, b) => b.description.localeCompare(a.description, 'pt'))
         break;
-      case 'description-down':
-        orderTasks.sort((a, b) => {
-          if(b.description < a.description) return -1
-          if(a.description < b.description) return 1
-          return 0
-        })
-        break;
+        case 'description-down':
+          orderTasks.sort((a, b) => a.description.localeCompare(b.description, 'pt'));
+          break;
       case 'priority-up':
         orderTasks.sort((a, b) => b.priority - a.priority)
         break;
