@@ -5,46 +5,42 @@ const Table = ({ tasks, setTasks, almostAddTask }) => {
   const [sortType, setSortType] = useState('date-down')
   
   const handleClick = (value) => {
-    console.log(value);
     if (sortType.includes('down')) setSortType(`${value}-up`);
     if (sortType.includes('up')) setSortType(`${value}-down`);
   }
 
   useEffect(() => {
-    console.log(sortType)
-
-    let orderTasks = [];
+    let orderTasks = [...tasks];
 
     switch (sortType) {
       case 'date-up':
-        orderTasks = tasks.sort((a, b) => b.id - a.id)
+        orderTasks.sort((a, b) => b.id - a.id)
         break;
       case 'date-down':
-        orderTasks = tasks.sort((a, b) => a.id - b.id)
+        orderTasks.sort((a, b) => a.id - b.id)
         break;
       case 'status-up':
-        orderTasks = tasks.sort((a, b) => b.status - a.status)
+        orderTasks.sort((a, b) => b.status - a.status)
         break;
       case 'status-down':
-        orderTasks = tasks.sort((a, b) => a.status - b.status)
+        orderTasks.sort((a, b) => a.status - b.status)
         break;
       case 'description-up':
-        orderTasks = tasks.sort((a, b) => b.description - a.description)
+        orderTasks.sort((a, b) => b.description - a.description)
         break;
       case 'description-down':
-        orderTasks = tasks.sort((a, b) => a.description - b.description)
+        orderTasks.sort((a, b) => a.description - b.description)
         break;
       case 'priority-up':
-        orderTasks = tasks.sort((a, b) => b.priority - a.priority)
+        orderTasks.sort((a, b) => b.priority - a.priority)
         break;
       case 'priority-down':
-        orderTasks = tasks.sort((a, b) => a.priority - b.priority)
+        orderTasks.sort((a, b) => a.priority - b.priority)
         break;
       default:
         break;
     }
     setTasks(orderTasks);
-    console.log(tasks);
   }, [sortType])
 
   const arrowSort = (value) => {
