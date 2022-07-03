@@ -28,9 +28,9 @@ const Table = ({ tasks, setTasks, almostAddTask }) => {
       case 'description-up':
         orderTasks.sort((a, b) => b.description.localeCompare(a.description, 'pt'))
         break;
-        case 'description-down':
-          orderTasks.sort((a, b) => a.description.localeCompare(b.description, 'pt'));
-          break;
+      case 'description-down':
+        orderTasks.sort((a, b) => a.description.localeCompare(b.description, 'pt'));
+        break;
       case 'priority-up':
         orderTasks.sort((a, b) => b.priority - a.priority)
         break;
