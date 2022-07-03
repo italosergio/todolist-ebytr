@@ -26,7 +26,6 @@ Tasks.init({
   },
   status: {
     type: BOOLEAN,
-    allowNull: false,
   },
   date: {
     type: DATE,
