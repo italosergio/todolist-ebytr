@@ -1,4 +1,4 @@
-const LoadingTable = () => {
+const LoadingTable = ({quantity}) => {
 
   const imagineLines = (times) => {
     let lines = [];
@@ -14,7 +14,7 @@ const LoadingTable = () => {
   };
 
   return (
-    <>{imagineLines(10)}</>
+    <>{imagineLines(quantity)}</>
   )
 }
 
