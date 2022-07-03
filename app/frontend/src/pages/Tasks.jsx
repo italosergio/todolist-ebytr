@@ -5,7 +5,10 @@ import { requestTasks } from "../services/requests";
 
 const Tasks = () => {
   const [tasks, setTasks] = useState([]);
-  const [descriptionInput, setDescriptionInput] = useState('')
+  const [descriptionInput, setDescriptionInput] = useState('');
+  const [priorityInput, setPriorityInput] = useState('');
+  const [addTaskCount, setAddTaskCount] = useState(0);
+  const [almostAddTask, setAlmostAddTask] = useState(false);
 
   const getTasks = (endpoint) => requestTasks(endpoint)
     .then((response) => setTasks(response))
@@ -21,9 +24,11 @@ const Tasks = () => {
   return (
     <>
       <Header />
-      <TaskInput 
+      <TaskInput
         descriptionInput={descriptionInput}
         setDescriptionInput={setDescriptionInput}
+        priorityInput={ priorityInput }
+        setPriorityInput={setPriorityInput}
       />
       <Table tasks={tasks} />
     </>
