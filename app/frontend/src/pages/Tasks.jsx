@@ -42,7 +42,6 @@ const Tasks = () => {
       description: descriptionInput,
       priority: priorityInput,
       date: date.toISOString(),
-      status: false
     }
     postTask(endpoint, { task });
   }, [addTaskCount]);
@@ -64,7 +63,7 @@ const Tasks = () => {
       </button>
       <br />
       <br />
-      <Table tasks={ tasks } almostAddTask={ almostAddTask } />
+      <Table tasks={ tasks } setTasks={ setTasks } almostAddTask={ almostAddTask } />
     </>
   )
 }

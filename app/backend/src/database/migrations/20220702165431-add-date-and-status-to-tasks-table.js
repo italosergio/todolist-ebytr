@@ -13,8 +13,8 @@ module.exports = {
       'tasks',
       'status',
       {
-        allowNull: false,
         type: Sequelize.BOOLEAN,
+        defaultValue: false,
       },
     );
   },
