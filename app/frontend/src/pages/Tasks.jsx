@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Header, Table } from "../components";
+import TaskInput from '../components/TaskInput';
 import { requestTasks } from "../services/requests";
 
 const Tasks = () => {
   const [tasks, setTasks] = useState([]);
+  const [descriptionInput, setDescriptionInput] = useState('')
 
   const getTasks = (endpoint) => requestTasks(endpoint)
     .then((response) => setTasks(response))
@@ -19,6 +21,10 @@ const Tasks = () => {
   return (
     <>
       <Header />
+      <TaskInput 
+        descriptionInput={descriptionInput}
+        setDescriptionInput={setDescriptionInput}
+      />
       <Table tasks={tasks} />
     </>
   )
