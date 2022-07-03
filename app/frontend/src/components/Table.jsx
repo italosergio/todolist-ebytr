@@ -8,6 +8,9 @@ const Table = ({ tasks, setTasks, almostAddTask }) => {
     console.log(value);
     if (sortType.includes('down')) setSortType(`${value}-up`);
     if (sortType.includes('up')) setSortType(`${value}-down`);
+  }
+
+  useEffect(() => {
     console.log(sortType)
 
     let orderTasks = [];
@@ -41,10 +44,8 @@ const Table = ({ tasks, setTasks, almostAddTask }) => {
         break;
     }
     setTasks(orderTasks);
-  }
-
-  useEffect(() => {
-  })
+    console.log(tasks);
+  }, [sortType])
 
   const arrowSort = (value) => {
     if (sortType === `${value}-down`) return (<i class="angle down icon"></i>)
