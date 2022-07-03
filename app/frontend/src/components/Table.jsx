@@ -26,10 +26,18 @@ const Table = ({ tasks, setTasks, almostAddTask }) => {
         orderTasks.sort((a, b) => a.status - b.status)
         break;
       case 'description-up':
-        orderTasks.sort((a, b) => b.description - a.description)
+        orderTasks.sort((a, b) => {
+          if(b.description > a.description) return -1
+          if(a.description > b.description) return 1
+          return 0
+        })
         break;
       case 'description-down':
-        orderTasks.sort((a, b) => a.description - b.description)
+        orderTasks.sort((a, b) => {
+          if(b.description < a.description) return -1
+          if(a.description < b.description) return 1
+          return 0
+        })
         break;
       case 'priority-up':
         orderTasks.sort((a, b) => b.priority - a.priority)
