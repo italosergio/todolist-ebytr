@@ -32,9 +32,9 @@ const Table = ({ tasks, almostAddTask }) => {
         </tbody>
       </table>
 
-      { !tasks.length ? <LoadingTable quantity={10} /> : null }
-      { almostAddTask ? <LoadingTable quantity={1} /> : null }
-      
+      {!tasks.length ? <LoadingTable quantity={10} /> : null}
+      {almostAddTask ? <LoadingTable quantity={1} /> : null}
+
     </>
   )
 }
