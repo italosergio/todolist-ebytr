@@ -5,8 +5,9 @@ import { requestTasks, insertTask } from "../services/requests";
 
 const Tasks = () => {
   const [tasks, setTasks] = useState([]);
+  const [task, setTask] = useState([]);
   const [descriptionInput, setDescriptionInput] = useState('');
-  const [priorityInput, setPriorityInput] = useState('');
+  const [priorityInput, setPriorityInput] = useState(0);
   const [addTaskCount, setAddTaskCount] = useState(0);
   const [almostAddTask, setAlmostAddTask] = useState(false);
 
@@ -36,15 +37,18 @@ const Tasks = () => {
 
   useEffect(() => {
     const endpoint = '/tasks';
+    postTask(endpoint, { task });
+  }, [addTaskCount]);
+
+  useEffect(() => {
     const date = new Date();
 
-    const task = {
+    setTask({
       description: descriptionInput,
       priority: priorityInput,
       date: date.toISOString(),
-    }
-    postTask(endpoint, { task });
-  }, [addTaskCount]);
+    })
+  }, [descriptionInput, priorityInput])
 
   return (
     <>
