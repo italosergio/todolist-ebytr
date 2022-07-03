@@ -1,5 +1,7 @@
 export default interface ITask {
   id: number,
-  task: string,
+  description: string,
   priority: number,
+  date: Date,
+  status?: boolean,
 }
