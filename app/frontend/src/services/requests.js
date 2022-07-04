@@ -19,4 +19,9 @@ export const deleteTasks = async (endpoint) => {
   return tasks;
 };
 
+export const deleteTask = async (param) => {
+  const { data: { tasks } } = await api.delete(`/tasks/${param}`);
+  return tasks;
+};
+
 export default api;

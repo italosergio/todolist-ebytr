@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Header, Table } from "../components";
 import TaskInput from '../components/TaskInput';
-import { requestTasks, insertTask, deleteTasks } from "../services/requests";
+import { requestTasks, insertTask, deleteTasks, deleteTask } from "../services/requests";
 
 const Tasks = () => {
   const [tasks, setTasks] = useState([]);
@@ -26,6 +26,10 @@ const Tasks = () => {
   }
 
   const removeTasks = () => deleteTasks('/tasks')
+    .then((response) => setTasks(response))
+    .catch((error) => console.log(error));
+
+  const removeTask = (param) => deleteTask(param)
     .then((response) => setTasks(response))
     .catch((error) => console.log(error));
 
@@ -76,7 +80,12 @@ const Tasks = () => {
         </div>
       </div>
       <br />
-      <Table tasks={tasks} setTasks={setTasks} almostAddTask={almostAddTask} />
+      <Table
+        tasks={tasks}
+        setTasks={setTasks}
+        almostAddTask={almostAddTask}
+        removeTask={removeTask}
+      />
     </>
   )
 }

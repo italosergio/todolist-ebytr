@@ -1,7 +1,12 @@
 import { useState, useEffect } from 'react';
 import LoadingTable from "./LoadingTable";
 
-const Table = ({ tasks, setTasks, almostAddTask }) => {
+const Table = ({
+  tasks,
+  setTasks,
+  almostAddTask,
+  removeTask
+}) => {
   const [sortType, setSortType] = useState('date-down')
 
   const handleClick = (value) => {
@@ -70,20 +75,31 @@ const Table = ({ tasks, setTasks, almostAddTask }) => {
 
         <tbody>
           {
-            tasks.map((e) => {
-              const date = new Date(e.date);
+            tasks.map((task) => {
+              const date = new Date(task.date);
               const datePhrase = `${date.getDate()}/${date.getMonth() + 1} as ${date.getHours()}:${date.getMinutes()} `
               return (
                 <tr>
                   <td>
-                    {e.status ? <i class="check circle outline icon"></i> : <i class="circle outline icon"></i>}
+                    <div>
+                      {
+                        task.status
+                          ? <i class="check circle outline icon"></i>
+                          : <i class="circle outline icon"></i>
+                      }
+                      <i
+                        class="trash alternate outline icon"
+                        id={task.id}
+                        onClick={({ target }) => removeTask(target.id)}
+                      ></i>
+                    </div>
                   </td>
-                  <td>{e.description}</td>
+                  <td>{task.description}</td>
                   <td>{datePhrase}</td>
                   <td>
-                    {e.priority === 1 ? <div class="ui green button"></div> : null}
-                    {e.priority === 2 ? <button class="ui yellow button"></button> : null}
-                    {e.priority === 3 ? <button class="ui red button"></button> : null}
+                    {task.priority === 1 ? <div class="ui green button"></div> : null}
+                    {task.priority === 2 ? <button class="ui yellow button"></button> : null}
+                    {task.priority === 3 ? <button class="ui red button"></button> : null}
                   </td>
                 </tr>
               )
