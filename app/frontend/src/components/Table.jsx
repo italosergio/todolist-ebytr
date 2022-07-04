@@ -8,14 +8,16 @@ const Table = ({
   almostAddTask,
 }) => {
   const [sortType, setSortType] = useState('date-down')
+  const [editor, setEditor] = useState(0)
+  const [editorInput, setEditorInput] = useState('')
 
   const removeTask = (param) => deleteTask(param)
     .then((response) => setTasks(response))
     .catch((error) => console.log(error));
 
-  const updateStatusTask = (body) => updateTask(body)
-  .then((response) => setTasks(response))
-  .catch((error) => console.log(error));
+  const updateEachTask = (body) => updateTask(body)
+    .then((response) => setTasks(response))
+    .catch((error) => console.log(error));
 
   const handleClick = (value) => {
     if (sortType.includes('down')) setSortType(`${value}-up`);
@@ -55,7 +57,7 @@ const Table = ({
     }
     setTasks(orderTasks);
   }
-  
+
   useEffect(() => {
     tableOrderByColumn(sortType);
   }, [sortType])
@@ -100,12 +102,12 @@ const Table = ({
                           ? <i
                             class="check circle outline big green icon"
                             id={task.id}
-                            onClick={({ target }) => updateStatusTask({ id: target.id, editedTask: { status: false } })}
+                            onClick={({ target }) => updateEachTask({ id: target.id, editedTask: { status: false } })}
                           ></i>
                           : <i
                             class="circle outline big icon"
                             id={task.id}
-                            onClick={({ target }) => updateStatusTask({ id: target.id, editedTask: { status: true } })}
+                            onClick={({ target }) => updateEachTask({ id: target.id, editedTask: { status: true } })}
                           ></i>
                       }
                       <i
@@ -115,7 +117,35 @@ const Table = ({
                       ></i>
                     </div>
                   </td>
-                  <td>{task.description}</td>
+                  <td id={task.id} onDoubleClick={() => setEditor(task.id)} >
+                    {
+                      editor === task.id
+                        ? (
+                          <>
+                            <div class="ui inverted large transparent icon input" data-inverted="" data-tooltip="Escreva a nova descrição e clique no icone para concluir" data-position="top left">
+                              <input
+                                type="text"
+                                placeholder={task.description}
+                                value={editorInput}
+                                onChange={({ target: { value } }) => setEditorInput(value)}
+                              />
+                            </div>
+                            <i
+                              id={task.id}
+                              class="edit icon"
+                              onClick={({ target: { id } }) => {
+                                setEditor(0);
+                                updateEachTask({ id, editedTask: { description: editorInput } })
+                                setEditorInput('')
+                              }}
+                            ></i>
+                          </>
+                        )
+                        : <spam data-inverted="" data-tooltip="Double click para editar" data-position="top left">
+                          {task.description}
+                        </spam>
+                    }
+                  </td>
                   <td>{datePhrase}</td>
                   <td>
                     {task.priority === 1 ? <div class="ui green button"></div> : null}
