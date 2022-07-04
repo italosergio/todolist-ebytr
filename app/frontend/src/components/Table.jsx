@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { deleteTask } from '../services/requests';
+import { deleteTask, updateTask } from '../services/requests';
 import LoadingTable from "./LoadingTable";
 
 const Table = ({
@@ -12,6 +12,10 @@ const Table = ({
   const removeTask = (param) => deleteTask(param)
     .then((response) => setTasks(response))
     .catch((error) => console.log(error));
+
+  const updateStatusTask = (body) => updateTask(body)
+  .then((response) => setTasks(response))
+  .catch((error) => console.log(error));
 
   const handleClick = (value) => {
     if (sortType.includes('down')) setSortType(`${value}-up`);
@@ -85,11 +89,20 @@ const Table = ({
               return (
                 <tr>
                   <td>
-                    <div>
+                    <div
+                    >
                       {
                         task.status
-                          ? <i class="check circle outline icon"></i>
-                          : <i class="circle outline icon"></i>
+                          ? <i
+                            class="check circle outline big green icon"
+                            id={task.id}
+                            onClick={({ target }) => updateStatusTask({ id: target.id, editedTask: { status: false } })}
+                          ></i>
+                          : <i
+                            class="circle outline big icon"
+                            id={task.id}
+                            onClick={({ target }) => updateStatusTask({ id: target.id, editedTask: { status: true } })}
+                          ></i>
                       }
                       <i
                         class="trash alternate outline icon"

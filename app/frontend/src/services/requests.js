@@ -24,4 +24,9 @@ export const deleteTask = async (param) => {
   return tasks;
 };
 
+export const updateTask = async (body) => {
+  const { data: { tasks } } = await api.patch('/tasks', body);
+  return tasks;
+};
+
 export default api;
