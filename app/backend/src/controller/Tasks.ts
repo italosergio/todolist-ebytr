@@ -55,9 +55,6 @@ export default class Tasks {
     const destroy = new Delete();
     await destroy.Tasks();
 
-    const findAll = new Find();
-    this._tasks = await findAll.Tasks();
-
-    return res.status(200).json({ tasks: this._tasks });
+    return res.status(200).json({ tasks: [] });
   }
 }
