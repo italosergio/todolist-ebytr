@@ -4,6 +4,11 @@ export default class Delete {
   // eslint-disable-next-line class-methods-use-this
   public async Task(id: number): Promise<void> {
     const tasks = new Tasks();
-    await tasks.delete(id);
+    await tasks.deleteOne(id);
+  }
+
+  public async Tasks(): Promise<void> {
+    const tasks = new Tasks();
+    await tasks.deleteAll();
   }
 }
