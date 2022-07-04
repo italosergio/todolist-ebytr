@@ -14,4 +14,9 @@ export const insertTask = async (endpoint, body) => {
   return tasks;
 };
 
+export const deleteTasks = async (endpoint) => {
+  const { data: { tasks } } = await api.delete(endpoint);
+  return tasks;
+};
+
 export default api;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Header, Table } from "../components";
 import TaskInput from '../components/TaskInput';
-import { requestTasks, insertTask } from "../services/requests";
+import { requestTasks, insertTask, deleteTasks } from "../services/requests";
 
 const Tasks = () => {
   const [tasks, setTasks] = useState([]);
@@ -25,13 +25,15 @@ const Tasks = () => {
     setAlmostAddTask(false);
   }
 
+  const removeTasks = () => deleteTasks('/tasks')
+    .then((response) => setTasks(response))
+    .catch((error) => console.log(error));
+
   useEffect(() => {
     const endpoint = '/tasks';
-
     let timer = setTimeout(() => {
       getTasks(endpoint);
     }, 1000); // timer usado apenas melhorar visualizacao do efeito Loading;
-
     return () => { clearTimeout(timer) }
   }, []);
 
@@ -42,13 +44,12 @@ const Tasks = () => {
 
   useEffect(() => {
     const date = new Date();
-
     setTask({
       description: descriptionInput,
       priority: priorityInput,
       date: date.toISOString(),
     })
-  }, [descriptionInput, priorityInput])
+  }, [descriptionInput, priorityInput]);
 
   return (
     <>
@@ -60,13 +61,20 @@ const Tasks = () => {
         priorityInput={priorityInput}
         setPriorityInput={setPriorityInput}
       />
-      <div class="ui animated button" tabindex="0" onClick={() => setAddTaskCount(addTaskCount + 1)}>
-        <div class="visible content">Adicionar</div>
-        <div class="hidden content">
-          <i class="plus icon"></i>
+      <div>
+        <div class="ui animated button" tabindex="0" onClick={() => setAddTaskCount(addTaskCount + 1)}>
+          <div class="visible content">Adicionar</div>
+          <div class="hidden content">
+            <i class="plus icon"></i>
+          </div>
+        </div>
+        <div class="ui animated button" tabindex="0" onClick={() => removeTasks()}>
+          <div class="visible content">Remover Todas</div>
+          <div class="hidden content">
+            <i class="trash alternate icon"></i>
+          </div>
         </div>
       </div>
-      <br />
       <br />
       <Table tasks={tasks} setTasks={setTasks} almostAddTask={almostAddTask} />
     </>
