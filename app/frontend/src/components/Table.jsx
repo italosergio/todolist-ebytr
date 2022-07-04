@@ -1,13 +1,17 @@
 import { useState, useEffect } from 'react';
+import { deleteTask } from '../services/requests';
 import LoadingTable from "./LoadingTable";
 
 const Table = ({
   tasks,
   setTasks,
   almostAddTask,
-  removeTask
 }) => {
   const [sortType, setSortType] = useState('date-down')
+
+  const removeTask = (param) => deleteTask(param)
+    .then((response) => setTasks(response))
+    .catch((error) => console.log(error));
 
   const handleClick = (value) => {
     if (sortType.includes('down')) setSortType(`${value}-up`);

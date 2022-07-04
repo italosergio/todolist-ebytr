@@ -12,12 +12,6 @@ const Tasks = () => {
     .then((response) => setTasks(response))
     .catch((error) => console.log(error));
 
-
-
-  const removeTask = (param) => deleteTask(param)
-    .then((response) => setTasks(response))
-    .catch((error) => console.log(error));
-
   useEffect(() => {
     let timer = setTimeout(() => {
       getTasks();
@@ -49,7 +43,6 @@ const Tasks = () => {
         tasks={tasks}
         setTasks={setTasks}
         almostAddTask={almostAddTask}
-        removeTask={removeTask}
       />
     </>
   )
