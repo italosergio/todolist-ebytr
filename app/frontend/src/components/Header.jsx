@@ -1,3 +1,5 @@
+import '../styles/components/header.css';
+
 const Header = () => {
   return (
     <header>
