@@ -14,6 +14,7 @@ export default class TasksRouter {
     this.route.get('/', tasks.get);
     this.route.post('/', tasks.insert);
     this.route.patch('/', tasks.update);
-    this.route.delete('/', tasks.delete);
+    this.route.delete('/', tasks.deleteAll);
+    this.route.delete('/:id', tasks.deleteOne);
   }
 }

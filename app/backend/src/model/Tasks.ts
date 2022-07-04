@@ -23,7 +23,11 @@ export default class Tasks {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  public async delete(id: number): Promise<void> {
+  public async deleteOne(id: number): Promise<void> {
     await tasksModel.destroy({ where: { id } });
+  }
+
+  public async deleteAll(): Promise<void> {
+    await tasksModel.destroy({ where: {} });
   }
 }

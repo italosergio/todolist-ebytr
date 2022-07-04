@@ -39,11 +39,21 @@ export default class Tasks {
     return res.status(200).json({ tasks: this._tasks });
   }
 
-  public async delete(req: Request, res: Response, _next: NextFunction): Promise<Response> {
-    const { id } = req.body;
+  public async deleteOne(req: Request, res: Response, _next: NextFunction): Promise<Response> {
+    const { id } = req.params;
 
     const destroy = new Delete();
-    await destroy.Task(id);
+    await destroy.Task(Number(id));
+
+    const findAll = new Find();
+    this._tasks = await findAll.Tasks();
+
+    return res.status(200).json({ tasks: this._tasks });
+  }
+
+  public async deleteAll(req: Request, res: Response, _next: NextFunction): Promise<Response> {
+    const destroy = new Delete();
+    await destroy.Tasks();
 
     const findAll = new Find();
     this._tasks = await findAll.Tasks();
