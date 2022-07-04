@@ -147,7 +147,7 @@ const Table = ({
                     }
                   </td>
                   <td>{datePhrase}</td>
-                  <td>
+                  <td data-inverted="" data-tooltip="Click para editar" data-position="top left">
                     {
                       task.priority === 1
                       ? <div
