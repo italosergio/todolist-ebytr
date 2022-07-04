@@ -10,7 +10,7 @@ module.exports = {
       [
         {
           description: 'Reuniao Ebytr',
-          priority: 1,
+          priority: 3,
           status: false,
           date: new Date(),
         },
@@ -22,8 +22,14 @@ module.exports = {
         },
         {
           description: 'Sair com cachorro',
-          priority: 3,
+          priority: 0,
           status: true,
+          date: new Date(),
+        },
+        {
+          description: 'Beber Agua',
+          priority: 1,
+          status: false,
           date: new Date(),
         },
       ],
