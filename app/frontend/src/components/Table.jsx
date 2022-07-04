@@ -22,10 +22,10 @@ const Table = ({
     if (sortType.includes('up')) setSortType(`${value}-down`);
   }
 
-  useEffect(() => {
+  const tableOrderByColumn = (type) => {
     let orderTasks = [...tasks];
 
-    switch (sortType) {
+    switch (type) {
       case 'date-up':
         orderTasks.sort((a, b) => b.id - a.id)
         break;
@@ -54,6 +54,10 @@ const Table = ({
         break;
     }
     setTasks(orderTasks);
+  }
+  
+  useEffect(() => {
+    tableOrderByColumn(sortType);
   }, [sortType])
 
   const arrowSort = (value) => {
