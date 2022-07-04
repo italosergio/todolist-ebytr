@@ -5,7 +5,7 @@ import { requestTasks, deleteTask } from "../services/requests";
 const Tasks = () => {
   const [tasks, setTasks] = useState([]);
   const [descriptionInput, setDescriptionInput] = useState();
-  const [priorityInput, setPriorityInput] = useState();
+  const [priorityInput, setPriorityInput] = useState('0');
   const [almostAddTask, setAlmostAddTask] = useState(false);
 
   const getTasks = () => requestTasks()
