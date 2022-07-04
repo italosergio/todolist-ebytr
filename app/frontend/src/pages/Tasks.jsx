@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Header, Table } from "../components";
-import TaskInput from '../components/TaskInput';
+import { Header, Table, TaskInput } from "../components";
 import { requestTasks, insertTask, deleteTasks, deleteTask } from "../services/requests";
 
 const Tasks = () => {
@@ -8,10 +7,9 @@ const Tasks = () => {
   const [task, setTask] = useState([]);
   const [descriptionInput, setDescriptionInput] = useState();
   const [priorityInput, setPriorityInput] = useState();
-  const [addTaskCount, setAddTaskCount] = useState(0);
   const [almostAddTask, setAlmostAddTask] = useState(false);
 
-  const getTasks = (endpoint) => requestTasks(endpoint)
+  const getTasks = () => requestTasks()
     .then((response) => setTasks(response))
     .catch((error) => console.log(error));
 
@@ -25,7 +23,7 @@ const Tasks = () => {
     setAlmostAddTask(false);
   }
 
-  const removeTasks = () => deleteTasks('/tasks')
+  const removeTasks = () => deleteTasks()
     .then((response) => setTasks(response))
     .catch((error) => console.log(error));
 
@@ -34,17 +32,11 @@ const Tasks = () => {
     .catch((error) => console.log(error));
 
   useEffect(() => {
-    const endpoint = '/tasks';
     let timer = setTimeout(() => {
-      getTasks(endpoint);
+      getTasks();
     }, 1000); // timer usado apenas melhorar visualizacao do efeito Loading;
     return () => { clearTimeout(timer) }
   }, []);
-
-  useEffect(() => {
-    const endpoint = '/tasks';
-    postTask(endpoint, { task });
-  }, [addTaskCount]);
 
   useEffect(() => {
     const date = new Date();
@@ -66,7 +58,7 @@ const Tasks = () => {
         setPriorityInput={setPriorityInput}
       />
       <div>
-        <div class="ui animated button" tabindex="0" onClick={() => setAddTaskCount(addTaskCount + 1)}>
+        <div class="ui animated button" tabindex="0" onClick={() => postTask({ task })}>
           <div class="visible content">Adicionar</div>
           <div class="hidden content">
             <i class="plus icon"></i>
