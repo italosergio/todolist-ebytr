@@ -6,13 +6,15 @@ on:
   
 
 jobs:
-  ESLint-Evaluator:
+  ESLint-Backend-Evaluator:
     runs-on: ubuntu-latest
     name: ESLint
     steps:
       - name: Fetch project repository
         uses: actions/checkout@v2
 
-      - name: Fetch ESLint evaluator
-        uses: stefanoeb/eslint-action@1.0.2
-
+      - name: ESLint evaluator
+        run: |
+          cd app/backend
+          npm i
+          npm run lint
