@@ -13,9 +13,15 @@ jobs:
       - name: Fetch project repository
         uses: actions/checkout@v2
 
-      - name: ESLint evaluator
+      - name: ESLint Backend Evaluator
         run: |
           cd app/backend
           npm i
           npm run lint
 
+      - name: ESLint Frontend Evaluator
+        run: |
+          cd app/frontend
+          npm i
+          npm run lint
+          npm run lint:styles
