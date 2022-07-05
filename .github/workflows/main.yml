@@ -31,3 +31,16 @@ jobs:
           npm i
           npm run lint
           npm run lint:styles
+
+  Backend-Tests:
+    runs-on: ubuntu-latest
+    name: Backend Tests
+    steps:
+      - name: Fetch project repository
+        uses: actions/checkout@v2
+
+      - name: Run Unit Tests
+        run: |
+          cd app/backend
+          npm i
+          npm test
