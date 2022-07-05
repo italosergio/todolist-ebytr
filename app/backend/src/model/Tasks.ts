@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 import { ITask } from '../interface';
 import tasksModel from '../database/models/Tasks';
 

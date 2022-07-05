@@ -2,9 +2,9 @@ body {
   background-image: url('../images/Ebytr-Tasks-Wallpaper-HD.jpg');
   background-repeat: no-repeat;
   background-size: 135%;
-  padding: 0;
-  margin: 0;
-  font-family: 'Cyberspace-Raceway-Back', sans-serif;
+  font-family: Cyberspace-Raceway-Back , sans-serif;
   height: 100vh;
+  margin: 0;
+  padding: 0;
   width: 100vw;
 }

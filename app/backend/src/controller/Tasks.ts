@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 import { NextFunction, Response, Request } from 'express';
 import { Find, Create, Update, Delete } from '../service/Tasks';
 import { ITask } from '../interface';
