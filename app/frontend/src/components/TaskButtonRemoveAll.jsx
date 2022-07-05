@@ -1,4 +1,6 @@
-import { deleteTasks } from "../services/requests";
+import PropTypes from 'prop-types';
+import { React } from 'react';
+import { deleteTasks } from '../services/requests';
 
 const TaskButtonRemoveAll = ({ setTasks }) => {
   const removeTasks = () => deleteTasks()
@@ -6,15 +8,23 @@ const TaskButtonRemoveAll = ({ setTasks }) => {
     .catch((error) => console.log(error));
 
   return (
-    <>
-      <div class="ui animated button" tabindex="0" onClick={() => removeTasks()}>
-        <div class="visible content">Remover todas</div>
-        <div class="hidden content">
-          <i class="trash alternate icon"></i>
-        </div>
+    <div
+      role="button"
+      className="ui animated button"
+      tabIndex="0"
+      onClick={ () => removeTasks() }
+      onKeyDown={ () => {} }
+    >
+      <div className="visible content">Remover todas</div>
+      <div className="hidden content">
+        <i className="trash alternate icon" />
       </div>
-    </>
+    </div>
   );
-}
+};
+
+TaskButtonRemoveAll.propTypes = {
+  setTasks: PropTypes.func.isRequired,
+};
 
 export default TaskButtonRemoveAll;

@@ -1,6 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import React from 'react';
-import {Tasks} from './pages';
+import Tasks from './pages';
 import './styles/app.css';
 
 function App() {

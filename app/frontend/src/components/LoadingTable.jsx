@@ -1,21 +1,27 @@
-const LoadingTable = ({quantity}) => {
+import PropTypes from 'prop-types';
+import { React } from 'react';
 
+const LoadingTable = ({ quantity }) => {
   const imagineLines = (times) => {
-    let lines = [];
+    const lines = [];
 
-    for(let i = 0; i < times; i+=1) {
+    for (let i = 0; i < times; i += 1) {
       lines.push(
-      <p class="placeholder-glow">
-          <span class="placeholder col-12"></span>
-      </p>
-      )
+        <p className="placeholder-glow">
+          <span className="placeholder col-12" />
+        </p>,
+      );
     }
     return lines;
   };
 
   return (
     <>{imagineLines(quantity)}</>
-  )
-}
+  );
+};
+
+LoadingTable.propTypes = {
+  quantity: PropTypes.number.isRequired,
+};
 
 export default LoadingTable;

@@ -5,11 +5,11 @@ import TaskInput from './TaskInput';
 import TaskButtonAdd from './TaskButtonAdd';
 import TaskButtonRemoveAll from './TaskButtonRemoveAll';
 
-export { 
+export {
   Header,
   Table,
   LoadingTable,
   TaskInput,
   TaskButtonAdd,
-  TaskButtonRemoveAll
+  TaskButtonRemoveAll,
 };

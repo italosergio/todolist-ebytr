@@ -3,7 +3,7 @@ import DescriptionColumn from './DescriptionColumn';
 import DateColumn from './DateColumn';
 import PriorityColumn from './PriorityColumn';
 
-export { 
+export {
   StatusColumn,
   DescriptionColumn,
   DateColumn,

@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Header, Table, TaskButtonAdd, TaskButtonRemoveAll, TaskInput } from "../components";
-import { requestTasks, deleteTask } from "../services/requests";
+import { requestTasks } from '../services/requests';
+import {
+  Header,
+  Table,
+  TaskButtonAdd,
+  TaskButtonRemoveAll,
+  TaskInput,
+} from '../components';
 
 const Tasks = () => {
   const [tasks, setTasks] = useState([]);
@@ -13,10 +19,11 @@ const Tasks = () => {
     .catch((error) => console.log(error));
 
   useEffect(() => {
-    let timer = setTimeout(() => {
+    const ONE_SEC = 1000;
+    const timer = setTimeout(() => {
       getTasks();
-    }, 1000); // timer usado apenas melhorar visualizacao do efeito Loading;
-    return () => { clearTimeout(timer) }
+    }, ONE_SEC); // timer usado apenas melhorar visualizacao do efeito Loading;
+    return () => { clearTimeout(timer); };
   }, []);
 
   return (
@@ -24,28 +31,28 @@ const Tasks = () => {
       <Header />
       <br />
       <TaskInput
-        descriptionInput={descriptionInput}
-        setDescriptionInput={setDescriptionInput}
-        priorityInput={priorityInput}
-        setPriorityInput={setPriorityInput}
+        descriptionInput={ descriptionInput }
+        setDescriptionInput={ setDescriptionInput }
+        priorityInput={ priorityInput }
+        setPriorityInput={ setPriorityInput }
       />
       <div>
         <TaskButtonAdd
-          setAlmostAddTask={setAlmostAddTask}
-          descriptionInput={descriptionInput}
-          priorityInput={priorityInput}
-          setTasks={setTasks}
+          setAlmostAddTask={ setAlmostAddTask }
+          descriptionInput={ descriptionInput }
+          priorityInput={ priorityInput }
+          setTasks={ setTasks }
         />
-        <TaskButtonRemoveAll setTasks={setTasks} />
+        <TaskButtonRemoveAll setTasks={ setTasks } />
       </div>
       <br />
       <Table
-        tasks={tasks}
-        setTasks={setTasks}
-        almostAddTask={almostAddTask}
+        tasks={ tasks }
+        setTasks={ setTasks }
+        almostAddTask={ almostAddTask }
       />
     </>
-  )
-}
+  );
+};
 
 export default Tasks;
