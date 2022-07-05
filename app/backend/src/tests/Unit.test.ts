@@ -5,7 +5,6 @@ import chaiHttp = require('chai-http');
 import Tasks from '../database/models';
 import { app } from '../app';
 import { Response } from 'superagent';
-import { MatchesMock, TeamMock, TeamsMock, UserMock } from './mocks';
 
 chai.use(chaiHttp);
 
