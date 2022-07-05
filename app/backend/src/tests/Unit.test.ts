@@ -77,4 +77,19 @@ describe('1 - GET /tasks', () => {
     expect(response.body.tasks[3].status).to.be.equal(false);
     expect(response.body.tasks[3].date).to.be.an('string');
   });
+  
+  it('Status code: 400', async () => {
+    sinon.restore();
+
+    sinon
+      .stub(tasksModel, "findAll")
+      .resolves([]);
+
+    response = await chai
+      .request(app)
+      .get('/tasks');
+
+    expect(response.status).exist;
+    expect(response).to.have.status(400);
+  });
 });
