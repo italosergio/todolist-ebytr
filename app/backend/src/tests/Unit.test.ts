@@ -300,3 +300,33 @@ describe('4 - DELETE /tasks/:id', () => {
     expect(response.body.tasks[3].date).to.be.an('string');
   });
 });
+
+describe('5 - DELETE /tasks', () => {
+  before(async () => {
+    sinon
+      .stub(tasksModel, "destroy")
+      .resolves();
+      
+    sinon
+      .stub(tasksModel, "findAll")
+      .resolves([]);
+
+    response = await chai
+      .request(app)
+      .delete('/tasks');
+  });
+
+  after(async () => {
+    sinon.restore();
+  })
+
+  it('Status code: 200', async () => {
+    expect(response.status).exist;
+    expect(response).to.have.status(200);
+  });
+
+  it('Response body com tarefas deletadas', async () => {
+    expect(response.body.tasks).to.be.an('array');
+    expect(response.body.tasks).to.have.length(0);
+  });
+});
