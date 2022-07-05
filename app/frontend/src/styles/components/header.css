@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,900&display=swap');
+
+h1 {
+  position: absolute;
+  text-shadow: 4px 4px 0px #c08c2d;
+  left: 60%;
+  font-family: 'Poppins', cursive;
+  color: rgb(3, 108, 110);
+  font-size: 70px;
+  cursor: pointer;
+  animation: fadeIn 5.5s;
+}
+
