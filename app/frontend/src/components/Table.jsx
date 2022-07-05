@@ -112,7 +112,7 @@ const Table = ({
         </tbody>
       </table>
 
-      {tasks === [] ? <LoadingTable quantity={ 10 } /> : null}
+      {!tasks.length ? <LoadingTable quantity={ 10 } /> : null}
       {almostAddTask ? <LoadingTable quantity={ 1 } /> : null}
 
     </>
@@ -123,6 +123,7 @@ Table.propTypes = {
   almostAddTask: PropTypes.bool.isRequired,
   setTasks: PropTypes.func.isRequired,
   tasks: PropTypes.shape({
+    length: PropTypes.number,
     map: PropTypes.func,
   }).isRequired,
 };
