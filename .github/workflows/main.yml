@@ -7,7 +7,7 @@ on:
 jobs:
   ESLint-Backend-Evaluator:
     runs-on: ubuntu-latest
-    name: ESLint
+    name: ESLint Backend
     steps:
       - name: Fetch project repository
         uses: actions/checkout@v2
@@ -20,7 +20,7 @@ jobs:
 
   ESLint-Frontend-Evaluator:
     runs-on: ubuntu-latest
-    name: ESLint
+    name: ESLint Frontend
     steps:
       - name: Fetch project repository
         uses: actions/checkout@v2
