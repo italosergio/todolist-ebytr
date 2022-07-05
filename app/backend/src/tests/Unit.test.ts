@@ -2,9 +2,11 @@ import 'mocha';
 import * as sinon from 'sinon';
 import * as chai from 'chai';
 import chaiHttp = require('chai-http');
-import Tasks from '../database/models';
+import tasksModel from '../database/models/Tasks';
 import { app } from '../app';
 import { Response } from 'superagent';
+
+import { mockTasks } from './mock';
 
 chai.use(chaiHttp);
 
@@ -31,47 +33,48 @@ describe('0 - Error middleware', async () => {
     })
 })
 
-// describe('1 - POST /login - Correct email and password', () => {
-//   before(async () => {
-//     sinon
-//       .stub(Users, "findOne")
-//       .resolves({...UserMock} as unknown as Users);
+describe('1 - GET /tasks', () => {
+  before(async () => {
+    sinon
+      .stub(tasksModel, "findAll")
+      .resolves([...mockTasks] as unknown as tasksModel[]);
 
-//     response = await chai
-//       .request(app)
-//       .post('/login')
-//       .send({
-//         email: 'batman@justiceleague.org',
-//         password: 'secret_admin'
-//       });
-//   });
+    response = await chai
+      .request(app)
+      .get('/tasks');
+  });
 
-//   after(async ()=>{
-//     sinon.restore();
-//   })
+  after(async ()=>{
+    sinon.restore();
+  })
 
-//   it('Check status 200', async () => {
-//     expect(response.status).exist;
-//     expect(response).to.have.status(200);
-//   });
+  it('Status code: 200', async () => {
+    expect(response.status).exist;
+    expect(response).to.have.status(200);
+  });
 
-//   it('Check response body <id>', async () => {
-//     expect(response.body.user.id).exist;
-//     expect(response.body.user.id).to.be.equal(1);
-//   });
-
-//   it('Check response body <username>', async () => {
-//     expect(response.body.user.username).exist;
-//     expect(response.body.user.username).to.be.equal('batman');
-//   });
-
-//   it('Check response body <role>', async () => {
-//     expect(response.body.user.role).exist;
-//     expect(response.body.user.role).to.be.equal('admin');
-//   });
-
-//   it('Check response body <email>', async () => {
-//     expect(response.body.user.email).exist;
-//     expect(response.body.user.email).to.be.equal('batman@justiceleague.org');
-//   });
-// });
+  it('Response body', async () => {
+    expect(response.body.tasks).to.be.an('array');
+    expect(response.body.tasks).to.have.length(4);
+    expect(response.body.tasks[0].id).to.be.equal(1);
+    expect(response.body.tasks[0].description).to.be.equal('Reuniao Ebytr');
+    expect(response.body.tasks[0].priority).to.be.equal(3);
+    expect(response.body.tasks[0].status).to.be.equal(false);
+    expect(response.body.tasks[0].date).to.be.an('string');
+    expect(response.body.tasks[1].id).to.be.equal(2);
+    expect(response.body.tasks[1].description).to.be.equal('Daily com o time');
+    expect(response.body.tasks[1].priority).to.be.equal(2);
+    expect(response.body.tasks[1].status).to.be.equal(false);
+    expect(response.body.tasks[1].date).to.be.an('string');
+    expect(response.body.tasks[2].id).to.be.equal(3);
+    expect(response.body.tasks[2].description).to.be.equal('Sair com cachorro');
+    expect(response.body.tasks[2].priority).to.be.equal(0);
+    expect(response.body.tasks[2].status).to.be.equal(true);
+    expect(response.body.tasks[2].date).to.be.an('string');
+    expect(response.body.tasks[3].id).to.be.equal(4);
+    expect(response.body.tasks[3].description).to.be.equal('Beber Agua');
+    expect(response.body.tasks[3].priority).to.be.equal(1);
+    expect(response.body.tasks[3].status).to.be.equal(false);
+    expect(response.body.tasks[3].date).to.be.an('string');
+  });
+});
