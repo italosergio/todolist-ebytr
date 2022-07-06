@@ -1,7 +1,10 @@
 _Bem vinda(o)!!_
 
 # To Do List - Ebtry
-![Captura de tela de 2022-07-04 05-36-34](https://user-images.githubusercontent.com/87591265/177116459-b2ebadc0-8cf7-4c00-9c3e-3162123477dd.png)
+
+
+https://user-images.githubusercontent.com/87591265/177457866-603f5d9e-6833-46d6-a3a5-64045ef0dc0a.mp4
+
 
 # Tecnologias
    - React.js
