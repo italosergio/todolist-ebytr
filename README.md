@@ -32,12 +32,11 @@ _Bem vinda(o)!!_
 3. Instale as dependências
     * `npm install`
 4. Inicialize o projeto:
-    ** _certifique-se de possuir docker instalado na sua máquina_
+
+    ⚠️ _certifique-se de possuir docker instalado na sua máquina_
     * `npm run compose:up` e espere concluir o processo
     * Tudo pronto para acessar `http://localhost:3000`
     * Não esqueça de, após o uso da aplicação, parar os conteiners criados pra evitar uso desnecessario de memória. Para isso use o script ja criado no projeto `npm run compose:down`.
-    
-    ⚠️ certifique-se de estar na pasta raiz do projeto `todolist-ebytr`.
 
 # Testes  
 
