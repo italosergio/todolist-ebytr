@@ -6,8 +6,11 @@ _Bem vinda(o)!!_
 # Tecnologias
    - React.js
    - Node.js
+   - Docker
    - MySql
    - Sequelize
+   - Mocha
+   - Express
 
 # Requisitos
 
