@@ -48,6 +48,7 @@ _Bem vinda(o)!!_
     * `npm install`
 4. Rode os testes com:
     * `npm run test:coverage` (recomendado)
+
       ou
     * `npm test`
 
